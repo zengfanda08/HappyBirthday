@@ -22,10 +22,10 @@ class ItemDetailsViewModel(
 
     // 过滤不为空的数据
     val uiState: StateFlow<ItemDetailsUiState> = itemRepository.getItemStream(itemId).filterNotNull().map {
-            ItemDetailsUiState(itemDetails = it.toItemDetails())
-        }.stateIn(
-            scope = viewModelScope, started = SharingStarted.WhileSubscribed(TIMEOUT_MILLIS), initialValue = ItemDetailsUiState()
-        )
+        ItemDetailsUiState(outOfStock = it.quantity <= 0, itemDetails = it.toItemDetails())
+    }.stateIn(
+        scope = viewModelScope, started = SharingStarted.WhileSubscribed(TIMEOUT_MILLIS), initialValue = ItemDetailsUiState()
+    )
 
     companion object {
         private const val TIMEOUT_MILLIS = 5_000L
@@ -39,6 +39,12 @@ class ItemDetailsViewModel(
                 itemRepository.updateItem(currentItem.copy(quantity = currentItem.quantity - 1))
             }
 
+        }
+    }
+
+    fun deleteItem() {
+        viewModelScope.launch {
+            itemRepository.deleteItem(uiState.value.itemDetails.toItem())
         }
     }
 }

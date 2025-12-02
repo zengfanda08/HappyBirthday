@@ -41,9 +41,9 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import com.fanda.happybirthday.inventory.InventoryTopAppBar
 import com.fanda.happybirthday.inventory.data.Item
 import com.fanda.happybirthday.inventory.ui.navigation.NavigationDestination
-import com.example.inventory.ui.theme.InventoryTheme
 import com.fanda.happybirthday.R
 import com.fanda.happybirthday.inventory.ui.AppViewModelProvider
+import com.fanda.happybirthday.ui.theme.HappyBirthdayTheme
 
 object ItemDetailsDestination : NavigationDestination {
     override val route = "item_details"
@@ -71,7 +71,7 @@ fun ItemDetailsScreen(
             )
         }, floatingActionButton = {
             FloatingActionButton(
-                onClick = { navigateToEditItem(0) },
+                onClick = { navigateToEditItem(uiState.itemDetails.id) },
                 shape = MaterialTheme.shapes.medium,
                 modifier = Modifier.padding(dimensionResource(id = R.dimen.padding_large))
 
@@ -85,8 +85,11 @@ fun ItemDetailsScreen(
     ) { innerPadding ->
         ItemDetailsBody(
             itemDetailsUiState = uiState,
-            onSellItem = { },
-            onDelete = { },
+            onSellItem = { viewModel.reduceQuantityByOne() },
+            onDelete = {
+                viewModel.deleteItem()
+                navigateBack()
+            },
             modifier = Modifier
                 .padding(
                     start = innerPadding.calculateStartPadding(LocalLayoutDirection.current),
@@ -119,7 +122,7 @@ private fun ItemDetailsBody(
             onClick = onSellItem,
             modifier = Modifier.fillMaxWidth(),
             shape = MaterialTheme.shapes.small,
-            enabled = true
+            enabled = !itemDetailsUiState.outOfStock
         ) {
             Text(stringResource(R.string.sell))
         }
@@ -223,7 +226,7 @@ private fun DeleteConfirmationDialog(
 @Preview(showBackground = true)
 @Composable
 fun ItemDetailsScreenPreview() {
-    InventoryTheme {
+    HappyBirthdayTheme {
         ItemDetailsBody(
             ItemDetailsUiState(
                 outOfStock = true,

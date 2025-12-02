@@ -36,7 +36,12 @@ object ItemEditDestination : NavigationDestination {
             )
         }, modifier = modifier
     ) { innerPadding ->
-        ItemEntryBody(itemUiState = viewModel.itemUiState, onItemValueChange = { }, onSaveClick = { }, modifier = Modifier
+        ItemEntryBody(itemUiState = viewModel.itemUiState, onItemValueChange = {
+            viewModel.updateUiState(it)
+        }, onSaveClick = {
+            viewModel.updateItem()
+            navigateBack()
+        }, modifier = Modifier
             .padding(
                 start = innerPadding.calculateStartPadding(LocalLayoutDirection.current), end = innerPadding.calculateEndPadding(LocalLayoutDirection.current), top = innerPadding.calculateTopPadding()
             )

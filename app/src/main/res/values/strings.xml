@@ -271,6 +271,15 @@
     </string>
     <string name="email_11_time">3 hours ago</string>
 
+    // race
+    <string name="run_a_race">Run a race</string>
+    <string name="pause">Pause</string>
+    <string name="start">Start</string>
+    <string name="reset">Reset</string>
+    <string name="progress_percentage">%1$d%%</string>
+    <string name="player_one_name">Player 1</string>
+    <string name="player_two_name">Player 2</string>
+
     // mars
     <string name="loading_failed">Failed to load</string>
     <string name="placeholder_result">Placeholder result text</string>
@@ -297,4 +306,44 @@
     <string name="sell">Sell</string>
     <string name="yes">Yes</string>
     <string name="required_fields">*required fields</string>
+
+    // store
+    <string name="top_bar_name">Android Dessert Release</string>
+    <string name="grid_layout_toggle">Grid layout</string>
+    <string name="linear_layout_toggle">Linear layout</string>
+
+    // workmanager
+    <!-- Title -->
+    <string name="blur_title">Select Blur Amount</string>
+
+    <!-- Buttons -->
+    <string name="select_image">Select Image</string>
+    <string name="see_file">See File</string>
+
+    <!-- Content description -->
+    <string name="description_image">The image to blur and save.</string>
+
+    <!-- Blur levels -->
+    <string name="blur_lv_1">A little blurred</string>
+    <string name="blur_lv_2">More blurred</string>
+    <string name="blur_lv_3">The most blurred</string>
+    <string name="cancel_work">Cancel Work</string>
+
+    <!-- Messages -->
+    <string name="set_permissions_in_settings">Go to Settings -> Apps and Notifications ->
+        WorkManager Demo -> App Permissions and grant access to Storage.</string>
+
+    <!-- Notification -->
+    <string name="blurring_image">Blurring image</string>
+    <string name="saving_image">Saving image</string>
+    <string name="cleaning_up_files">Cleaning up old temporary files</string>
+
+    <!-- Errors -->
+    <string name="invalid_input_uri">Invalid input uri</string>
+    <string name="error_applying_blur">Error applying blur</string>
+    <string name="writing_to_mediaStore_failed">Writing to MediaStore failed</string>
+    <string name="error_saving_image">Error saving image</string>
+    <string name="error_cleaning_file">Error cleaning up old temporary files</string>
+
 </resources>
+
